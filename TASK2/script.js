@@ -1,5 +1,4 @@
 function isPrime(n) {
-  const sqrt = Math.sqrt(n);
   if (n < 2) {
     return false;
   }
@@ -12,7 +11,7 @@ function isPrime(n) {
     return false;
   }
 
-  for (let i = 3; i <= sqrt; i += 2) {
+  for (let i = 3; i <= Math.sqrt(n); i += 2)    {
     if (n % i === 0) {
       return false;
     }
