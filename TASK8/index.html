@@ -1,18 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <button id="startButton">Start Loading</button>
-<div id="progressWrapper" style="width: 100%; background-color: #ccc; height: 30px;">
-  <div id="progressBar" style="width: 0%; background-color: #4caf50; height: 100%;"></div>
-</div>
-<p id="statusText">Progress: 0%</p>
-<script>
-  // JavaScript code here
-</script>
-</body>
+    <div
+      id="progressWrapper"
+      style="width: 100%; background-color: #ccc; height: 30px"
+    >
+      <div
+        id="progressBar"
+        style="width: 0%; background-color: #4caf50; height: 100%"
+      ></div>
+    </div>
+    <p id="statusText">Progress: 0%</p>
+    <script>
+      function startLoading() {
+        const progressBar = document.getElementById("progressBar");
+        const statusText = document.getElementById("statusText");
+        const startButton = document.getElementById("startButton");
+
+        startButton.disabled = true;
+
+        let progress = 0;
+
+        const interval = setInterval(() => {
+          progress += 1;
+
+          progressBar.style.width = `${progress}%`;
+
+          statusText.textContent = `Progress: ${progress}%`;
+
+          if (progress >= 100) {
+            clearInterval(interval);
+
+            startButton.disabled = false;
+
+            statusText.textContent = "Progress: 100% (Complete)";
+          }
+        }, 100);
+      }
+
+      document.addEventListener("click", startLoading);
+    </script>
+  </body>
 </html>
